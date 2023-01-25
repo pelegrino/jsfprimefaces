@@ -1,4 +1,4 @@
-package primefaces.hibernate.session;
+package jsfprimefaces.hibernate.session;
 
 import java.io.Serializable;
 import java.sql.Connection;
