@@ -79,6 +79,7 @@ public class ImplementacaoCrud<T> implements InterfaceCrud<T>{
 		executeFlushSession();
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public T merge(T obj) throws Exception {
 		validarTransaction();
@@ -87,6 +88,7 @@ public class ImplementacaoCrud<T> implements InterfaceCrud<T>{
 		return obj;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<T> findList(Class<T> entidade) throws Exception {
 		validarTransaction();
@@ -106,6 +108,7 @@ public class ImplementacaoCrud<T> implements InterfaceCrud<T>{
 		return obj;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public T findById(Class<T> entidade, Long id) throws Exception {
 		validaSessionFactory();
@@ -113,6 +116,7 @@ public class ImplementacaoCrud<T> implements InterfaceCrud<T>{
 		return obj;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<T> findListByQueryDinamica(String s) throws Exception {
 		validaSessionFactory();
@@ -189,6 +193,7 @@ public class ImplementacaoCrud<T> implements InterfaceCrud<T>{
 	}
 
 	//Realiza consulta no BD iniciando do parâmetro e obtendo o máximo (ex.: de 50 a 80)
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<T> findListByQueryDinamica(String query, int iniciaNoRegistro, int maxResultado) throws Exception {
 		validaSessionFactory();
@@ -210,11 +215,13 @@ public class ImplementacaoCrud<T> implements InterfaceCrud<T>{
 		}
 	}
 	
+	@SuppressWarnings("unused")
 	private void commitProcessoAjax() {
 		sessionFactory.getCurrentSession().beginTransaction().commit();
 		
 	}
 	
+	@SuppressWarnings("unused")
 	private void rollBackProcessoAjax() {
 		sessionFactory.getCurrentSession().beginTransaction().rollback();
 	}
@@ -224,6 +231,7 @@ public class ImplementacaoCrud<T> implements InterfaceCrud<T>{
 		sessionFactory.getCurrentSession().flush();
 	}
 	
+	@SuppressWarnings("unchecked")
 	public List<Object[]> getListSQLDinamicaArray(String sql) throws Exception {
 		validaSessionFactory();
 		List<Object[]> lista = (List<Object[]>) sessionFactory.getCurrentSession().createSQLQuery(sql).list();
