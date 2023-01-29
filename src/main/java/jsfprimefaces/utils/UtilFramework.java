@@ -11,8 +11,7 @@ public class UtilFramework implements Serializable {
 	
 	private static ThreadLocal<Long> threadLocal = new ThreadLocal<Long>();
 	
-	@SuppressWarnings("unused")
-	private synchronized static ThreadLocal<Long> getThreadLocal() {
+	public synchronized static ThreadLocal<Long> getThreadLocal() {
 		return threadLocal;
 	}
 
