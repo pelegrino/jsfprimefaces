@@ -74,6 +74,11 @@
   	<param-value>smoothness</param-value>
   </context-param>
   
+  <filter>
+  	<filter-name>PrimeFaces FileUpload Filter</filter-name>
+  	<filter-class>org.primefaces.webapp.filter.FileUploadFilter</filter-class>
+  </filter>
+  
   <filter-mapping>
   	<filter-name>PrimeFaces FileUpload Filter</filter-name>
   	<servlet-name>Faces Servlets</servlet-name>
@@ -90,7 +95,7 @@
   <servlet>
   	<servlet-name>Faces Servlet</servlet-name>
   	<servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
-  	<load-on-startup></load-on-startup>
+  	<load-on-startup>1</load-on-startup>
   </servlet>
   
   <servlet-mapping>
