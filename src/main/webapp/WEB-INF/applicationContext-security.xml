@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans
+	xmlns="http://www.springframewok.org/schema/security"
+	xmlns:b="http://www.springframewok.org/schema/beans"
+	xmlns:xsi="http://w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframewok.org/schema/beans
+	http://www.springframewok.org/schema/beans/spring-beans-3.0.xsd
+	http://www.springframewok.org/schema/security
+	http://www.springframewok.org/schema/security/spring-security-3.1.xsd" >
+	
+	<global-method-security secured-annotations="enable" />
+	
+	<http auto-config="true" 
+			acess-denied-page="/error/acessoNegado.xhtml" 
+			use-expressions="true">
+		
+		<intercept-url pattern="/cadastro/cad_permissao.jsf"
+			access="hasAnyRole('ADMIN')" method="POST" />
+			
+		<intercept-url pattern="/resources/componentes/**"
+			acesss="isAuthenticated() and hasAnyRole('USER')" />
+			
+		<intercept-url pattern="/resources/**"
+			access="isAuthenticated() and hasAnyRole('USER')" />
+			
+		<intercept-url pattern="/restrito/**"
+			access="isAuthenticated() and hasAnyRole('USER')" />
+			
+		<intercept-url pattern="/error/**"
+			access="isAnonymous() or isAuthenticated() or !isAuthenticated()" />		
+			
+		<intercept-url pattern="/templates/**"
+			access="isAuthenticated() and hasAnyRole('USER')" />
+			
+		<intercept-url pattern="/cadastro/**"
+			access="isAuthenticated() and hasAnyRole('USER')" />
+			
+		<intercept-url pattern="/publico/**"
+			access="permitall" />
+			
+		<form-login login-page="/publico/login.jsf"
+			always-use-default-targets="true" default-target-url="/restrito/principal.jsf"
+			authentication-failure-url="/publico/login.jsf?login_error=1" />
+			
+		<logout invalidate-session="true" logout-success-url="/publico/login.jsf" 
+			logout-url="/j_spring_security_logout" delete-cookies="JSESSIONID" />
+			
+		<remember-me token-validity-seconds="120960" />
+		
+		<session-management invalid-session-url="/publico/login.jsf"
+			session-fixation-protetion="migrateSession" >
+				<concurrency-control max-sessions="1"
+					expired-url="/publico/login.jsf"
+					error-if-maximum-exceeded="true" />
+		</session-management>
+		
+	</http>
+	
+</beans>
