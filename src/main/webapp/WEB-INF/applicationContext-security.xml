@@ -56,4 +56,27 @@
 		
 	</http>
 	
+	<authentication-manager>
+		<authentication-provider>
+			<password-encoder hash="plaintext" />			
+			<jdbc-user-service data-source-ref="springDataSource" 
+			
+			users-by-username-query="select ent_login as username, 
+									    ent_senha as password,
+									    'true' as enable
+									    from entidade
+									    where ent_inativo = true
+									    and upper(ent_login) = upper(?)"
+			
+			authorities-by-username-query="select u.ent_login as username, 
+								        p.esa_codigo as authority
+								        from entidade
+								        join entidadeacesso p
+								        on u.ent_codigo = p.ent_codigo
+								        where u.ent_inativo = false
+								        and upper (u.ent_login) = upper(?)"
+			/>
+		</authentication-provider>
+	</authentication-manager>
+	
 </beans>
