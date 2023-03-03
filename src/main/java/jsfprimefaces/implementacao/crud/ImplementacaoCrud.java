@@ -157,7 +157,7 @@ public class ImplementacaoCrud<T> implements InterfaceCrud<T>{
 	}
 
 	@Override
-	public List<?> getListSqlDinamica(String sql) throws Exception {
+	public List<?> getListSQLDinamica(String sql) throws Exception {
 		validaSessionFactory();
 		List<?> lista = sessionFactory.getCurrentSession().createSQLQuery(sql).list();
 		return lista;

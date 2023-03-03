@@ -35,6 +35,7 @@ public interface InterfaceCrud<T> extends Serializable {
 	//Carrega a lista de determinada classe
 	List<T> findList(Class<T> objs) throws Exception;
 	
+	//Busca um objeto
 	Object findId(Class<T> entidade, Long id) throws Exception;
 	
 	T findById(Class<T> entidade, Long id) throws Exception;
@@ -55,7 +56,7 @@ public interface InterfaceCrud<T> extends Serializable {
 	
 	Session getSession() throws Exception;
 	
-	List<?> getListSqlDinamica(String sql) throws Exception;
+	List<?> getListSQLDinamica(String sql) throws Exception;
 	
 	//JDBC do Spring
 	JdbcTemplate getJdbcTemplate();
@@ -65,7 +66,6 @@ public interface InterfaceCrud<T> extends Serializable {
 	Long totalRegistro(String table) throws Exception;
 	
 	Query obterQuery(String query) throws Exception;
-	
 	
 	//Carregamento Dinâmico
 	List<T> findListByQueryDinamica(String query, int iniciaNoRegistro, int maxResultado) throws Exception;
