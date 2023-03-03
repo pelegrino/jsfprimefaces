@@ -5,7 +5,7 @@
 	xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:mvc="http://www.springframework.org/schema/mvc"
 	xmlns:tx="http://www.springframework.org/schema/tx"
-	xsi:schemaLocation="http://www.springframewok.org/schema/mvc
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc
 	http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd
 	http://www.springframework.org/schema/beans
 	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
@@ -37,7 +37,7 @@
 	
 	
 	<!-- Data Source -->
-	<bean id="springDataSource" nome="springDataSource" class="org.springframework.jndi.JndiObjectFactoryBean" lazy-init="false">
+	<bean id="springDataSource" name="springDataSource" class="org.springframework.jndi.JndiObjectFactoryBean" lazy-init="false">
 		<property name="jndiName" >
 			<value>java:/comp/env/jdbc/datasource</value>
 		</property>
@@ -53,24 +53,24 @@
 		<property name="validateOnMigrate" value="true" />
 	</bean>
 	
-	<bean id="transactionManager" nome="transactionManager" 
+	<bean id="transactionManager" name="transactionManager" 
 	class="org.springframework.jdbc.datasource.DataSourceTransactionManager" lazy-init="false" >
 		<property name="dataSource" ref="springDataSource" />
 	</bean>
 	
-	<bean id="jdbcTemplate" nome="jdbcTemplate" class="jsfprimefaces.implementacao.crud.JdbcTemplateImpl">
-		<contructor-args name="dataSource" ref="springDataSource" />
-	</bean>
-	
-	<bean id="simpleJdbcTemplate" nome="simpleJdbcTemplate" class="jsfprimefaces.implementacao.crud.SimpleJdbcTemplateImpl">
+	<bean id="jdbcTemplate" name="jdbcTemplate" class="jsfprimefaces.implementacao.crud.JdbcTemplateImpl">
 		<constructor-args name="dataSource" ref="springDataSource" />
 	</bean>
 	
-	<bean id="simpleJdbcInsert" nome="simpleJdbcInsert" class="jsfprimefaces.implementacao.crud.SimpleJdbcInsertImpl">
+	<bean id="simpleJdbcTemplate" name="simpleJdbcTemplate" class="jsfprimefaces.implementacao.crud.SimpleJdbcTemplateImpl">
 		<constructor-args name="dataSource" ref="springDataSource" />
 	</bean>
 	
-	<bean id="simpleJdbcClassImpl" nome="simpleJdbcClassImpl" class="jsfprimefaces.implementacao.crud.SimpleJdbcClassImpl">
+	<bean id="simpleJdbcInsert" name="simpleJdbcInsert" class="jsfprimefaces.implementacao.crud.SimpleJdbcInsertImpl">
+		<constructor-args name="dataSource" ref="springDataSource" />
+	</bean>
+	
+	<bean id="simpleJdbcClassImpl" name="simpleJdbcClassImpl" class="jsfprimefaces.implementacao.crud.SimpleJdbcClassImpl">
 		<constructor-args name="dataSource" ref="springDataSource" />
 	</bean>
 	
@@ -86,7 +86,7 @@
 	lazy-init="false" >
 		<property name="viewClass" value="org.springframework.web.servlet.view.JstlView" />
 		<property name="prefix" value="/webapp/" />
-		<property name="sufix" value="*.jsf, *.xhtml, *.html, *.jsp, *js" />
+		<property name="suffix" value="*.jsf, *.xhtml, *.html, *.jsp, *js" />
 	</bean>
 	
 	<bean name="indexController" lazy-init="true" class="org.springframework.web.servlet.mvc.ParameterizableViewController"/>

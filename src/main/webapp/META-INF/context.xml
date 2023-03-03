@@ -1,24 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Context reloadable="true">
-	
-	<Resource
-		name="jdbc/datasource"
-		auth="Container"
+	<Resource	
+		name="jdbc/datasource" 
+		auth="Container" 
 		type="javax.sql.DataSource"
-		defaultAutoCommit="false"
-		maxTotal="50"
-		maxIdle="10"
-		maxWaitMillis="10"
+		defaultAutoCommit='false'
+		maxActive="50"
+		maxIdle="10" 
+		maxWait="10"
 		initialSize="10"
 		driverClassName="org.postgresql.Driver"
 		validationQuery="SELECT 'OK'"
-		testOnBorrow="true"
-		numTestsPerEvictionRun="5"
-		timeBetweenEvictionRunsMillis="5000"
-		minEvictableIdleTimeMillis="60000"
+		testWhileIdle="true"
+        testOnBorrow="true"
+        numTestsPerEvictionRun="5"
+        timeBetweenEvictionRunsMillis="5000"
+        minEvictableIdleTimeMillis="60000"
+		antiJARLocking="false"
+        antiResourceLocking="false"
 		username="postgres"
 		password="admin"
-		url="jdbc:postgresql://localhost:5432/jsfprimefaces?autoReconect=true"
+		url="jdbc:postgresql://localhost:5432/jsfprimefaces?autoReconnect=true"
 	/>
+
+
 
 </Context>

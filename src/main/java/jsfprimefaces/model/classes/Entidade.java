@@ -18,6 +18,11 @@ public class Entidade implements Serializable {
 	private String ent_senha;
 	private boolean ent_inativo = false;
 	
+	public Entidade() {
+		
+	}
+	
+	
 	@Id
 	public Long getEnt_codigo() {
 		return ent_codigo;

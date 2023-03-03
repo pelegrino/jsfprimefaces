@@ -43,6 +43,7 @@ public class FilterOpenSessionInView extends DelegatingFilterProxy implements Se
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
 			throws ServletException, IOException {
 		
+
 		//JDBC Spring
 		BasicDataSource springDataSource = (BasicDataSource) ContextLoaderListenerCaixakiUtils.getBean("springDataSource");
 		DefaultTransactionDefinition def = new DefaultTransactionDefinition();
