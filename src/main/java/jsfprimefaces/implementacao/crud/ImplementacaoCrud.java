@@ -31,7 +31,7 @@ public class ImplementacaoCrud<T> implements InterfaceCrud<T>{
 	private SimpleJdbcTemplateImpl simpleJdbcTemplate;
 	
 	@Autowired
-	private SimpleJdbcInsertImpl simpleJdbcInsert;
+	private SimpleJdbcInsertImplements simpleJdbcInsert;
 	
 	@Autowired
 	private SimpleJdbcTemplateImpl simpleJdbcTemplateImpl;
@@ -43,7 +43,7 @@ public class ImplementacaoCrud<T> implements InterfaceCrud<T>{
 	
 	@Override
 	public void save(T obj) throws Exception {
-		validarTransaction();
+		validaSessionFactory();
 		sessionFactory.getCurrentSession().save(obj);
 		executeFlushSession();
 		
@@ -51,7 +51,7 @@ public class ImplementacaoCrud<T> implements InterfaceCrud<T>{
 
 	@Override
 	public void persist(T obj) throws Exception {
-		validarTransaction();
+		validaSessionFactory();
 		sessionFactory.getCurrentSession().persist(obj);
 		executeFlushSession();
 		
@@ -59,7 +59,7 @@ public class ImplementacaoCrud<T> implements InterfaceCrud<T>{
 
 	@Override
 	public void saveOrUpdate(T obj) throws Exception {
-		validarTransaction();
+		validaSessionFactory();
 		sessionFactory.getCurrentSession().saveOrUpdate(obj);
 		executeFlushSession();
 		
@@ -67,14 +67,14 @@ public class ImplementacaoCrud<T> implements InterfaceCrud<T>{
 
 	@Override
 	public void update(T obj) throws Exception {
-		validarTransaction();
+		validaSessionFactory();
 		sessionFactory.getCurrentSession().update(obj);
 		executeFlushSession();
 	}
 
 	@Override
 	public void delete(T obj) throws Exception {
-		validarTransaction();
+		validaSessionFactory();
 		sessionFactory.getCurrentSession().delete(obj);
 		executeFlushSession();
 	}
@@ -82,7 +82,7 @@ public class ImplementacaoCrud<T> implements InterfaceCrud<T>{
 	@SuppressWarnings("unchecked")
 	@Override
 	public T merge(T obj) throws Exception {
-		validarTransaction();
+		validaSessionFactory();
 		obj = (T) sessionFactory.getCurrentSession().merge(obj);
 		executeFlushSession();
 		return obj;
@@ -91,10 +91,10 @@ public class ImplementacaoCrud<T> implements InterfaceCrud<T>{
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<T> findList(Class<T> entidade) throws Exception {
-		validarTransaction();
+		validaSessionFactory();
 		
 		StringBuilder query = new StringBuilder();
-		query.append("select distinct(entity) from").append(entidade.getSimpleName()).append(" entity ");
+		query.append(" select distinct(entity) from ").append(entidade.getSimpleName()).append(" entity ");
 		
 		List<T> lista = sessionFactory.getCurrentSession().createQuery(query.toString()).list();
 		
@@ -195,10 +195,10 @@ public class ImplementacaoCrud<T> implements InterfaceCrud<T>{
 	//Realiza consulta no BD iniciando do parâmetro e obtendo o máximo (ex.: de 50 a 80)
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<T> findListByQueryDinamica(String query, int iniciaNoRegistro, int maxResultado) throws Exception {
+	public List<T> findListByQueryDinamica(String query, int iniciaNoRegistro, int maximoResultado) throws Exception {
 		validaSessionFactory();
 		List<T> lista = new ArrayList<T>();
-		lista = sessionFactory.getCurrentSession().createQuery(query).setFirstResult(iniciaNoRegistro).setMaxResults(maxResultado).list();
+		lista = sessionFactory.getCurrentSession().createQuery(query).setFirstResult(iniciaNoRegistro).setMaxResults(maximoResultado).list();
 		return lista;
 	}
 	
