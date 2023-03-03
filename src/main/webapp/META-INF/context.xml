@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Context reloadable="true">
+
 	<Resource	
 		name="jdbc/datasource" 
 		auth="Container" 
@@ -20,9 +21,6 @@
         antiResourceLocking="false"
 		username="postgres"
 		password="admin"
-		url="jdbc:postgresql://localhost:5432/jsfprimefaces?autoReconnect=true"
-	/>
-
-
+		url="jdbc:postgresql://localhost:5432/jsfprimefaces?autoReconnect=true" />
 
 </Context>
