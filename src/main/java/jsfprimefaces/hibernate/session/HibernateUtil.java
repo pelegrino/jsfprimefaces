@@ -16,10 +16,7 @@ import org.hibernate.engine.SessionFactoryImplementor;
 
 import jsfprimefaces.implementacao.crud.VariavelConexaoUtil;
 
-/*
- * Responsável por estabelecer conexão
- */
-
+// Responsável por estabelecer conexão
 @ApplicationScoped
 public class HibernateUtil implements Serializable {
 
@@ -38,6 +35,7 @@ public class HibernateUtil implements Serializable {
 			}
 			
 			return sessionFactory;
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw new ExceptionInInitializerError("Erro ao criar conexão SessionFactory");
@@ -48,7 +46,6 @@ public class HibernateUtil implements Serializable {
 	
 	//Retorna o Session
 	public static SessionFactory getSessionFactory() {
-		
 		return sessionFactory;
 	}
 	
@@ -61,29 +58,24 @@ public class HibernateUtil implements Serializable {
 	public static Session openSession() {
 		if (sessionFactory == null) {
 			buildSessionFactory();
-			
 		}
-		
 		return sessionFactory.openSession();
 	}
 	
 	//Obtem conexão do provedor
 	public static Connection getConnectionProvider() throws SQLException {
-		
 		return((SessionFactoryImplementor) sessionFactory).getConnectionProvider().getConnection();
 	}
 	
-	//Conexão com o Initial
+	//Conexão com o InitialContext java
 	public static Connection getConnection() throws Exception {
-		
 		InitialContext context = new InitialContext();
 		DataSource ds = (DataSource) context.lookup(JAVA_COMP_ENV_JDBC_DATA_SOURCE);
-		
 		return ds.getConnection();
 	}
 	
+	//DataSource JNDI Tomcat
 	public static DataSource getDataSourceJndi() throws NamingException {
-		
 		InitialContext context = new InitialContext();
 		return (DataSource) context.lookup(VariavelConexaoUtil.JAVA_COMP_ENV_JDBC_DATA_SOURCE);
 	}
