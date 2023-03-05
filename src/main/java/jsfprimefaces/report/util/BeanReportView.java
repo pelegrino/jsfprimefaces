@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
 import jsfprimefaces.util.all.BeanViewAbstract;
 
 @Component
-public class BeanReportView extends BeanViewAbstract {
+public abstract class BeanReportView extends BeanViewAbstract {
 
 	private static final long serialVersionUID = 1L;
 
