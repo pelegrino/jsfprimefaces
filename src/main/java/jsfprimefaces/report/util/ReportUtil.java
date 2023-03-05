@@ -1,4 +1,4 @@
-package jsfprimefaces.report.util;
+	package jsfprimefaces.report.util;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -70,7 +70,9 @@ public class ReportUtil implements Serializable {
 		
 		File file = new File(caminhoRelatorio + SEPARATOR + nomeRelatorioJasper + PONTO + "jasper");
 		
-		if (caminhoRelatorio == null || (caminhoRelatorio != null && caminhoRelatorio.isEmpty()) || !file.exists()) {
+		if (caminhoRelatorio == null 
+				|| (caminhoRelatorio != null && caminhoRelatorio.isEmpty()) 
+				|| !file.exists()) {
 			caminhoRelatorio = this.getClass().getResource(FOLDER_RELATORIOS).getPath();
 			SEPARATOR = "";
 		}

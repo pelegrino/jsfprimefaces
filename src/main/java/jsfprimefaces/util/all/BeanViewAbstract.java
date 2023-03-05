@@ -3,7 +3,7 @@ package jsfprimefaces.util.all;
 import org.springframework.stereotype.Component;
 
 @Component
-public class BeanViewAbstract implements ActionViewPadrao {
+public abstract class BeanViewAbstract implements ActionViewPadrao {
 
 	private static final long serialVersionUID = 1L;
 
