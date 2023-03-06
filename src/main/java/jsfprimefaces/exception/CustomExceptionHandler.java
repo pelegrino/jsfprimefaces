@@ -82,6 +82,7 @@ public class CustomExceptionHandler extends ExceptionHandlerWrapper {
 					addMessage("msg", new FacesMessage(FacesMessage.SEVERITY_FATAL, 
 							"O erro foi causado por:\n"+ exception.getMessage(),""));
 					
+					//Primefaces
 					//Alert se a página não redirecionar
 					RequestContext.getCurrentInstance().
 					execute("alert('O sistema se recuperou de um erro inesperado')");
