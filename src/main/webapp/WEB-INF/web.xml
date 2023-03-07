@@ -37,7 +37,7 @@
   
   <error-page>
   	<error-code>404</error-code>
-  	<location>/error/paginaNaoEncontrada.jsf</location>
+  	<location>/error/404.jsf</location>
   </error-page>
   
   <error-page>

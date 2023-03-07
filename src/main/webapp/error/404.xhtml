@@ -4,12 +4,22 @@
 	  xmlns:h="http://java.sun.com/jsf/html"
 	  xmlns:f="http://java.sun.com/jsf/core"
 	  xmlns:ui="http://java.sun.com/jsf/facelets"
-	  xmlns:sec="http://www.springframework.org/security/facelets/tags"
 	  xmlns:p="http://primefaces.org/ui">
 	  
 <h:head>
+	<meta http-equiv="Content-Type" content="text/html/ charset=UTF-8"/>
+	<title><ui:insert name="titulo">Caixaki</ui:insert></title>
 </h:head>
-<h:body>
-	<h1>Principal</h1>
-</h:body>
+
+<h:form>
+	<h:body>
+		<p:panel id="panelPage404" header="Aviso">
+			<h:graphicImage library="img" name="404-error.png">
+				<h:outputLabel value="Página não encontrada" />
+			</h:graphicImage>
+		</p:panel>
+	
+	</h:body>
+</h:form>
+
 </html>
