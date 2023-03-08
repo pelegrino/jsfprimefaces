@@ -53,7 +53,7 @@
 		<property name="sqlMigrationPrefix" value="v" />
 		<property name="sqlMigrationSeparator" value="_" />
 		<property name="encoding" value="ISO-8859-1" />
-		<property name="validateOnMigrate" value="false" />
+		<property name="validateOnMigrate" value="true" />
 	</bean>
 	
 	<bean id="transactionManager" name="transactionManager" 
