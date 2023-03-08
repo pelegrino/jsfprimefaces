@@ -24,7 +24,7 @@ import jsfprimefaces.listener.ContextLoaderListenerCaixakiUtils;
 import jsfprimefaces.model.classes.Entidade;
 import jsfprimefaces.utils.UtilFramework;
 
-@WebFilter(filterName = "conexaoFiltro")
+@WebFilter(filterName = "conexaoFilter")
 public class FilterOpenSessionInView extends DelegatingFilterProxy implements Serializable {
 
 	private static final long serialVersionUID = 1L;
