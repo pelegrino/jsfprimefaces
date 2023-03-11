@@ -1,80 +1,79 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <b:beans xmlns="http://www.springframework.org/schema/security"
-	xmlns:b="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans
-	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
-	http://www.springframework.org/schema/security
-	http://www.springframework.org/schema/security/spring-security-3.1.xsd" >
-	
-	<global-method-security secured-annotations="enable" />
-	
-	<http auto-config="true" 
-			acess-denied-page="/error/acessoNegado.xhtml" 
-			use-expressions="true">
-		
-		<intercept-url pattern="/cadastro/cad_permissao.jsf"
-			access="hasAnyRole('ADMIN')" method="POST" />
-			
-		<intercept-url pattern="/resources/componentes/**"
-			acesss="isAuthenticated() and hasAnyRole('USER')" />
-			
-		<intercept-url pattern="/resources/**"
-			access="isAuthenticated() and hasAnyRole('USER')" />
-			
-		<intercept-url pattern="/restrito/**"
-			access="isAuthenticated() and hasAnyRole('USER')" />
-			
-		<intercept-url pattern="/error/**"
-			access="isAnonymous() or isAuthenticated() or !isAuthenticated()" />	
-			
-		<intercept-url pattern="/templates/**"
-			access="isAuthenticated() and hasAnyRole('USER')" />
-			
-		<intercept-url pattern="/cadastro/**"
-			access="isAuthenticated() and hasAnyRole('USER')" />
-			
-		<intercept-url pattern="/publico/**"
-			access="permitall" />
-			
-		<form-login login-page="/publico/login.jsf"
-			always-use-default-target="true" default-target-url="/restrito/principal.jsf"
-			authentication-failure-url="/publico/login.jsf?login_error=1" />
-			
-		<logout invalidate-session="true" logout-success-url="/publico/login.jsf" 
-			logout-url="/j_spring_security_logout" delete-cookies="JSESSIONID" />
-			
-		<remember-me token-validity-seconds="1209600" />
-		
-		<session-management invalid-session-url="/publico/login.jsf"
-			session-fixation-protection="migrateSession" >
-				<concurrency-control max-sessions="1"
-					expired-url="/publico/login.jsf"
-					error-if-maximum-exceeded="true" />
-		</session-management>
-		
-	</http>
-	
-	<authentication-manager>
-		<authentication-provider>
-			<password-encoder hash="plaintext" />			
-			<jdbc-user-service data-source-ref="springDataSource" 
-			
-			users-by-username-query="select ent_login as username, 
-									    ent_senha as password,
-									    'true' as enable
-									    from entidade
-									    where ent_inativo = false
-									    and upper(ent_login) = upper(?)"
-			
-			authorities-by-username-query="select u.ent_login as username, 
-								        p.esa_codigo as authority
-								        from entidade u
-								        join entidadeacesso p
-								        on u.ent_codigo = p.ent_codigo
-								        where u.ent_inativo = false
-								        and upper (u.ent_login) = upper(?)" />
-		</authentication-provider>
-	</authentication-manager>
-	
+    xmlns:b="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans 
+ http://www.springframework.org/schema/beans/spring-beans-3.0.xsd 
+ http://www.springframework.org/schema/security 
+ http://www.springframework.org/schema/security/spring-security-3.1.xsd">
+    
+    <global-method-security secured-annotations="enabled" />
+    
+    <http auto-config="true" 
+            access-denied-page="/error/acessoNegado.xhtml" 
+            use-expressions="true">
+        
+        <intercept-url pattern="/cadastro/cad_permissao.jsf"
+            access="hasAnyRole('ADMIN')" method="POST" />
+            
+        <intercept-url pattern="/resources/componentes/**"
+            access="isAuthenticated() and hasAnyRole('USER')" />
+            
+        <intercept-url pattern="/resources/**"
+            access="isAuthenticated() and hasAnyRole('USER')" />
+            
+        <intercept-url pattern="/restrito/**"
+            access="isAuthenticated() and hasAnyRole('USER')" />
+            
+        <intercept-url pattern="/error/**"
+            access="isAnonymous() or isAuthenticated() or !isAuthenticated()" />    
+            
+        <intercept-url pattern="/templates/**"
+            access="isAuthenticated() and hasAnyRole('USER')" />
+            
+        <intercept-url pattern="/cadastro/**"
+            access="isAuthenticated() and hasAnyRole('USER')" />
+            
+        <intercept-url pattern="/publico/**"
+            access="permitAll" />
+            
+        <form-login login-page="/publico/login.jsf"
+            always-use-default-target="true" default-target-url="/restrito/principal.jsf"
+            authentication-failure-url="/publico/login.jsf?login_error=1" />
+            
+        <logout invalidate-session="true" logout-success-url="/publico/login.jsf" 
+            logout-url="/j_spring_security_logout" delete-cookies="JSESSIONID" />
+            
+        <remember-me token-validity-seconds="1209600" />
+        
+        <session-management invalid-session-url="/publico/login.jsf"
+            session-fixation-protection="migrateSession" >
+                <concurrency-control max-sessions="1"
+                    expired-url="/publico/login.jsf"
+                    error-if-maximum-exceeded="true" />
+        </session-management>
+        
+    </http>
+    
+    <authentication-manager>
+        <authentication-provider>
+            <password-encoder hash="plaintext" />           
+            <jdbc-user-service data-source-ref="springDataSource" 
+            
+            users-by-username-query="select ent_login as username, 
+                                        ent_senha as password,
+                                        'true' as enable
+                                        from entidade
+                                        where ent_inativo = false
+                                        and upper(ent_login) = upper(?)"
+            
+            authorities-by-username-query="select u.ent_login as username, 
+                                        p.esa_codigo as authority
+                                        from entidade u
+                                        join entidadeacesso p
+                                        on u.ent_codigo = p.ent_codigo
+                                        where u.ent_inativo = false
+                                        and upper (u.ent_login) = upper(?)" />
+        </authentication-provider>
+    </authentication-manager>
+    
 </b:beans>
