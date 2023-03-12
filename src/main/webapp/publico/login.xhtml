@@ -7,8 +7,32 @@
 	  xmlns:p="http://primefaces.org/ui">
 	  
 <h:head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+	<title><ui:insert name="titulo">Caixaki</ui:insert></title>
+	<h:outputScript name="jquery.js" library="primefaces/jquery" />
+	<h:outputStylesheet name="estilo.css" library="css" />
+	<h:outputScript name="scripty.js" library="javascript" />
 </h:head>
+
 <h:body>
-	<h1>Login</h1>
+	<div id="imagemLogin">
+		<h:graphicImage library="img" name="logocaixaaqui.png" styleClass="bordaImagem"/>
+	</div>
+	
+	<div id="keysLogin">
+		<h:graphicImage library="img" name="keys.png" styleClass="bordaImagem"/>
+	</div>
+	
+	<div id="formLogin">
+		<br/>
+		
+		<h:panelGroup rendered="true">
+			<h:outputLabel rendered="#{SPRING_SECURITY_LAST_EXCEPTION.message == 'Bad credentials'}" >
+				<span class="estiloSpan">
+					Permissão Negada, login ou senha incorretos.
+				</span>
+			</h:outputLabel>
+		</h:panelGroup>
+	</div>
 </h:body>
 </html>
