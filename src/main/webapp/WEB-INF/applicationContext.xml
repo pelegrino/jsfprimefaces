@@ -108,8 +108,7 @@
     </bean>
     
     <bean id="reportUtil" class="jsfprimefaces.report.util.ReportUtil" />
-    
     <bean id="utilFramework" class="jsfprimefaces.utils.UtilFramework" scope="session" />
- 
+ 	<bean id="sessionController" class="jsfprimefaces.geral.controller.SessionControllerImpl" scope="singleton" />
         
 </beans>
