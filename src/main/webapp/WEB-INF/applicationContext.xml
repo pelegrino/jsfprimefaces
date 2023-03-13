@@ -109,6 +109,13 @@
     
     <bean id="reportUtil" class="jsfprimefaces.report.util.ReportUtil" />
     <bean id="utilFramework" class="jsfprimefaces.utils.UtilFramework" scope="session" />
+    
+    <!-- Controllers -->
+    
+    <!-- DAOs -->
+    <bean id="repositoryLogin" class="jsfprimefaces.dao.implementacao.DaoLogin" scope="singleton"/>
+    
+    <!-- Services -->
  	<bean id="sessionController" class="jsfprimefaces.geral.controller.SessionControllerImpl" scope="singleton" />
         
 </beans>
