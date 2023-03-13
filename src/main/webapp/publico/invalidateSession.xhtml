@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Frameset//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:h="http://java.sun.com/jsf/html"
+	  xmlns:f="http://java.sun.com/jsf/core"
+	  xmlns:ui="http://java.sun.com/jsf/facelets"
+	  xmlns:p="http://primefaces.org/ui">
+	  
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+	<title><ui:insert name="titulo">Caixaki</ui:insert></title>
+	<h:outputScript name="primefaces.js" library="primefaces" id="jsPrime" />
+	<h:outputScript name="jquery.js" library="primefaces/jquery" id="jsJquery" />
+	<h:outputScript name="jquery-plugins.js" library="primefaces/jquery" id="jsJqueryPlugin" />
+	<h:outputScript name="jquery.cookie.js" library="javascript" id="jsJaqueryCookie" />
+	<h:outputStylesheet name="jquery-ui.css" library="primefaces/jquery/ui" id="jsJqueryUi" />
+	<h:outputStylesheet name="primefaces.css" library="primefaces" id="jdPrimeCss" />
+	<h:outputScript name="jquery.maskMoney.min.js" library="javascript" id="jsMaskMoneySistema" />
+	<h:outputScript name="jquery.maskedinput.js" library="javascript" id="jsMaskInputSistema" />
+	<h:outputScript name="scripty.js" library="javascript" id="jsScriptSistema" />
+	<h:outputStylesheet name="estilo.css" library="css" id="cssStiloSistema"/> 
+</h:head>
+
+<h:form prependId="false" id="form">
+	
+	<script type="text/javascript" charset="UTF-8">
+		$.noConflit(); /*Evita conflitos entre bibliotecas */
+	</script>
+
+	<h:body>
+		<div id="msgError" class="espacoMensagem">
+			<p:growl id="msg" showDetail="false" sticky="true" redisplay="true" autoUpdate="true" life="500" />
+		</div>		
+	
+		<p:dialog header="Encerrar Sessão" widgetVar="dlg" resizable="false" modal="true" closable="false">
+			
+			<h:panelGrid columns="2" cellpadding="5">
+				<h:outputLabel for="username" value="Login: " />
+				<p:inputText id="username" required="true" label="username" requiredMessage="Informe o login." />
+				
+				<h:outputLabel for="password" value="Senha: " />
+				<p:inputText id="password" required="true" label="password" requiredMessage="Informe a senha." />
+				
+				<f:facet name="footer">
+					<p:commandButton value="Encerrar" 
+					style="heigth:40px; widht:100px; background:#CDCDC1; border:1px solid #FFFFFF;" 
+					update="form:msg" 
+					ajax="true" 
+					oncomplete="handleLoginRequest(xhr, status, args)" />
+				
+				</f:facet>
+			</h:panelGrid>
+		
+		</p:dialog>		
+		
+	</h:body>
+
+<script>
+	$ function() {
+		PF('dlg').show();
+	});
+	
+	function handleLoginRequest(xhr, status, args) {
+		
+		if(!args.loggedIn) {
+			alert('Encerrar sessão foi negada.')
+			PF('dlg').jq.effect('shake'), {times:5}, 100;
+		} else {
+			PF('dlg').hide();
+			logout('#{request.contextPath}');
+		}
+		
+	}
+</script>
+
+</h:form>
+</html>

@@ -1,4 +1,4 @@
-function invalidateSession(context, pagina) {
+function invalidarSession(context, pagina) {
 	document.location = (context + pagina + ".jsf");
 }
 
